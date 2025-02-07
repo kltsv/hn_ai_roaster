@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'models/story.dart';
+import 'models/comment.dart';
 
 class ApiClient {
   static const _baseUrl = 'https://hacker-news.firebaseio.com/v0';
@@ -40,7 +41,22 @@ class ApiClient {
     return stories;
   }
 
-  void dispose() {
-    _client.close();
+  Future<Comment> getComment(int id) async {
+    final response = await _client.get(
+      Uri.parse('$_baseUrl/item/$id.json'),
+    );
+
+    if (response.statusCode == 200) {
+      return Comment.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Failed to load comment');
+    }
+  }
+
+  Future<List<Comment>> getComments(List<int> ids) async {
+    final comments = await Future.wait(
+      ids.map((id) => getComment(id)),
+    );
+    return comments;
   }
 }

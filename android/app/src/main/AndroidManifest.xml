@@ -1,6 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
-        android:label="hacker_news_roasted"
+        android:label="HN AI Roaster"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

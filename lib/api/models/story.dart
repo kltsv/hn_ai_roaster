@@ -2,6 +2,7 @@ class Story {
   final int id;
   final String title;
   final String? url;
+  final String? text;
   final String by;
   final int time;
   final int score;
@@ -12,6 +13,7 @@ class Story {
     required this.id,
     required this.title,
     this.url,
+    this.text,
     required this.by,
     required this.time,
     required this.score,
@@ -24,6 +26,7 @@ class Story {
       id: json['id'] as int,
       title: json['title'] as String,
       url: json['url'] as String?,
+      text: json['text'] as String?,
       by: json['by'] as String,
       time: json['time'] as int,
       score: json['score'] as int,

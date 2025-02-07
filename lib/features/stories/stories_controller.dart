@@ -26,10 +26,4 @@ class StoriesController extends ChangeNotifier {
     }
     notifyListeners();
   }
-
-  @override
-  void dispose() {
-    _apiClient.dispose();
-    super.dispose();
-  }
 }
